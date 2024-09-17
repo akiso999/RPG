@@ -5,13 +5,12 @@ import utils.Dice;
 
 // モンスターを表現する抽象クラス
 public abstract class Monster extends Living {
-
 	// コンストラクタ
 	public Monster(String name, String weapon) {
 		// Livingクラスで定義したコンストラクタを利用する
 		super(name,weapon);
 	}
-
+	
 	// attackメソッドのオーバーライド
 	@Override
 	public void attack(Living target) {
@@ -19,9 +18,10 @@ public abstract class Monster extends Living {
 		int damage = Dice.get(1, 10) * super.offensive;
 		
 		// 相手のHPをダメージ値だけ減らす
-		target.hp  = target.hp - damage;
-				
+		int targhp  = target.getHp() - damage;
+		target.setHp(targhp);
+		
 		// コンソールにステータスを表示
-		System.out.println("「" + super.name + "」が「" + super.weapon + "」で攻撃！「" + target.name + "に" + damage + "のダメージを与えた。");
+		System.out.println("\n「" + super.name + "」が「" + super.weapon + "」で攻撃！「" + target.name + "」に" + damage + "のダメージを与えた。\n");
 	}
 }
