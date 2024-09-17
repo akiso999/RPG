@@ -21,30 +21,30 @@ public class Main {
 		
 		// Brave（勇者）, Fighter（戦士）, Wizard（魔法使い）クラスの各インスタンスを生成
 		
-		Human hum1 = new Brave("沖田総司", "剣");
-		Human hum2 = new Fighter("金太郎", "斧");
-		Human hum3 = new Wizard("安倍晴明", "魔法");
+		Human humman1 = new Brave("沖田総司", "剣");
+		Human humman2 = new Fighter("金太郎", "斧");
+		Human humman3 = new Wizard("安倍晴明", "魔法");
 		
 		// 人間グループのリストを空で生成
 		List<Human> humans = new ArrayList<>();
 		
 		// 勇者、戦士、魔法使いを人間グループのリストに追加
-		humans.add(hum1);
-		humans.add(hum2);
-		humans.add(hum3);
+		humans.add(humman1);
+		humans.add(humman2);
+		humans.add(humman3);
 		
 		// Slime（スライム）, Oak（オーク）, Dragon（ドラゴン）クラスの各インスタンスを生成
-		Monster mon1 = new Slime("キングスライム", "体当たり");
-		Monster mon2 = new Oak("オークキング", "槍");
-		Monster mon3 = new Dragon("紅龍", "炎");
+		Monster monster1 = new Slime("キングスライム", "体当たり");
+		Monster monster2 = new Oak("オークキング", "槍");
+		Monster monster3 = new Dragon("紅龍", "炎");
 		
 		// モンスターグループのリストを空で生成
 		List<Monster> monsters = new ArrayList<>();
 		
 		// スライム、オーク、ドラゴンをモンスターグループのリストに追加
-		monsters.add(mon1);
-		monsters.add(mon2);
-		monsters.add(mon3);
+		monsters.add(monster1);
+		monsters.add(monster2);
+		monsters.add(monster3);
 		
 		// 現在の各グループの状態を一覧表示
 		showGroupInfos(humans, monsters);
@@ -60,15 +60,15 @@ public class Main {
 			System.out.println("\n[人間のターン！]\n");
 			
 			// 人間グループから1人選択
-			Human hums1 = choiceHuman(humans) ;
+			Human human = choiceHuman(humans) ;
 			// モンスターグループから1人選択
-			Monster mons1 = choiceMonster(monsters);
+			Monster monster = choiceMonster(monsters);
 			// 選ばれた人間が、選ばれたモンスターを攻撃
-			hums1.attack(mons1);
+			human.attack(monster);
 			// モンスターのHPが0以下になれば、モンスターは倒れ、そのモンスターをモンスターグループから削除
-			if ( mons1.getHp() <= 0 ) {
-				System.out.println("\n★「" + mons1.getName() + "」は倒れた。\n");
-				monsters.remove(monsters.indexOf(mons1));
+			if ( monster.getHp() <= 0 ) {
+				System.out.println("\n★「" + monster.getName() + "」は倒れた。\n");
+				monsters.remove(monsters.indexOf(monster));
 			}
 			// モンスターグループに誰もいなくなれば、人間グループの勝利
 			if ( monsters == null ||  monsters.size() ==0 ) {
@@ -80,18 +80,18 @@ public class Main {
 			System.out.println("\n[モンスターのターン！]\n");
 			
 			// 人間グループから1人選択
-			Human hums2 = choiceHuman(humans) ;
+			human = choiceHuman(humans) ;
 			
 			// モンスターグループから1人選択
-			Monster mons2 = choiceMonster(monsters);
+			monster = choiceMonster(monsters);
 				
 			// 選ばれたモンスターが、選ばれた人間を攻撃
-			mons2.attack(hums2);
+			monster.attack(human);
 			
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
-			if ( hums2.getHp() <= 0 ) {
-				System.out.println("\n★「" + hums1.getName() + "」は倒れた。\n");
-				humans.remove(humans.indexOf(hums2));
+			if ( human.getHp() <= 0 ) {
+				System.out.println("\n★「" + human.getName() + "」は倒れた。\n");
+				humans.remove(humans.indexOf(human));
 			}
 			// 人間グループに誰もいなくなれば、人間グループの敗北
 			if ( humans == null ||  humans.size() ==0 ) {
